@@ -8,13 +8,11 @@ import logo from "../../assets/github-mark-white.svg";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  useEffect(() => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+  }, []);
 
-    useEffect(() => {
-localStorage.removeItem("token");
-localStorage.removeItem("userId");
-  },[]);
-
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -27,11 +25,18 @@ localStorage.removeItem("userId");
     try {
       setLoading(true);
 
-      const res = await axios.post("http://localhost:3002/login", {
-      //  const res = await axios.post("https://54.210.111.83:3002/login", {
-        email,
-        password,
-      });
+      // const res = await axios.post("http://localhost:3002/login", {
+      //   email,
+      //   password,
+      // });
+
+      const res = await axios.post(
+        "https://github-backend-3.onrender.com/login",
+        {
+          email,
+          password,
+        },
+      );
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);
