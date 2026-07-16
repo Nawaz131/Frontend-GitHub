@@ -25,18 +25,18 @@ const Login = () => {
     try {
       setLoading(true);
 
-      // const res = await axios.post("http://localhost:3002/login", {
-      //   email,
-      //   password,
-      // });
+      const res = await axios.post("http://localhost:3002/login", {
+        email,
+        password,
+      });
 
-      const res = await axios.post(
-        "https://github-backend-3.onrender.com/login",
-        {
-          email,
-          password,
-        },
-      );
+      // const res = await axios.post(
+      //   "https://github-backend-3.onrender.com/login",
+      //   {
+      //     email,
+      //     password,
+      //   },
+      // );
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);
