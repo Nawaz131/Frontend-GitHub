@@ -21,11 +21,20 @@ const Signup = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post("http://localhost:3002/signup", {
-        username,
-        email,
-        password,
-      });
+      // const res = await axios.post("http://localhost:3002/signup", {
+      //   username,
+      //   email,
+      //   password,
+      // });
+
+      const res = await axios.post(
+        "https://github-backend-3.onrender.com/signup",
+        {
+          username,
+          email,
+          password,
+        },
+      );
 
       // const res = await axios.post(
       //   "https://github-backend-3.onrender.com/signup",
