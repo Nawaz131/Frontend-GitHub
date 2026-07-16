@@ -21,13 +21,14 @@ const Signup = () => {
     try {
       setLoading(true);
 
-      // const res = await axios.post("http://localhost:3002/signup", {
+      // const res = await axios.post("http://localhost:3002/signup", {        // this is for local browser
+      //   email,
       //   username,
       //   email,
       //   password,
       // });
 
-      const res = await axios.post(
+      const res = await axios.post(                           // THis is for running in deployment broswer
         "https://github-backend-3.onrender.com/signup",
         {
           username,
@@ -35,15 +36,6 @@ const Signup = () => {
           password,
         },
       );
-
-      // const res = await axios.post(
-      //   "https://github-backend-3.onrender.com/signup",
-      //   {
-      //     email,
-      //     username,
-      //     password,
-      //   },
-      // );
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);

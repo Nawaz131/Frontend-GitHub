@@ -25,12 +25,12 @@ const Login = () => {
     try {
       setLoading(true);
 
-      // const res = await axios.post("http://localhost:3002/login", {
+      // const res = await axios.post("http://localhost:3002/login", {      // this is for local browser
       //   email,
       //   password,
       // });
 
-      const res = await axios.post(
+      const res = await axios.post(                      // THis is for running in deployment broswer
         "https://github-backend-3.onrender.com/login",
         {
           email,
