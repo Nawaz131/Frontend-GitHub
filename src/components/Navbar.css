@@ -1,4 +1,4 @@
-nav {
+/* nav {
   display: flex;
   justify-content: space-between;
   padding-bottom: 10px;
@@ -27,4 +27,100 @@ nav p {
 nav h3:hover,
 nav p:hover {
   text-decoration: underline;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+nav {
+  width: 100%;
+  height: 64px;
+  background-color: #010409;
+  border-bottom: 1px solid #30363d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* Left and Right */
+.navbar-left,
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* GitHub Logo */
+.github-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+/* Dashboard */
+.dashboard-link {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Search */
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 260px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+}
+
+.search-box input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  margin-left: 5px;
+}
+
+/* Icon Buttons */
+.nav-square-btn {
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  color: white;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.nav-square-btn:hover {
+  background-color: #21262d;
+}
+
+/* Profile */
+.profile-avatar {
+  font-size: 25px;
+  width: 25px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+nav {
+  position: sticky;
+top: 0;
+z-index: 1000;
 }
