@@ -15,7 +15,7 @@ const Dashboard = () => {
     const fetchRepositories = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3002/repo/user/${userId}`
+          `https://github-backend-3.onrender.com/repo/user/${userId}`   //change url local(localhost:3002) to live server
         );
 
         if (!response.ok) {
@@ -37,7 +37,7 @@ const Dashboard = () => {
     const fetchSuggestedRepositories = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3002/repo/all`
+          `https://github-backend-3.onrender.com/repo/all`              //change url(localhost) local to live server
         );
 
         if (!response.ok) {
