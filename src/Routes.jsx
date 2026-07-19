@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate, useRoutes } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 //pages List
 import Dashboard from "./components/dashboard/Dashboard";
@@ -29,15 +30,19 @@ const ProjectRoutes = () => {
       navigate("/login");
     }
 
-    if (userIdFromStorage && window.location.pathname == "/login") {
-      navigate("/");
+    if (userIdFromStorage && window.location.pathname === "/login") {
+      navigate("/dashboard", { replace: true });
     }
   }, [currentUser, navigate, setCurrentUser]);
 
   let element = useRoutes([
     {
-      path: "/",
+      path: "/dashboard",
       element: <Dashboard />,
+    },
+    {
+      path: "/",
+      element: <Navigate to="/dashboard" replace />,
     },
     {
       path: "/login",
