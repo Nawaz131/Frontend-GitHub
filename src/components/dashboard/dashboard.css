@@ -1,5 +1,674 @@
-#dashboard{
+/* #dashboard{
     display: flex;
-    width: 1080px;
+    width: 100%;
     justify-content: space-between ;
+} */
+
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #010409;
+  color: #f0f6fc;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+/* Main dashboard layout */
+
+.github-dashboard {
+  display: grid;
+  grid-template-columns: 360px minmax(500px, 1fr) 320px;
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  background-color: #010409;
+  color: #f0f6fc;
+}
+
+/* Left sidebar */
+
+.dashboard-left {
+  min-height: calc(100vh - 64px);
+  padding: 26px 25px;
+  border-right: 1px solid #30363d;
+  background-color: #0d1117;
+}
+
+.left-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.left-heading h3 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.new-repository-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 6px;
+  background-color: #238636;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.new-repository-button:hover {
+  background-color: #2ea043;
+}
+
+.repository-search {
+  width: 100%;
+  margin: 16px 0 12px;
+  padding: 8px 12px;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  outline: none;
+  background-color: #0d1117;
+  color: #f0f6fc;
+}
+
+.repository-search:focus {
+  border-color: #1f6feb;
+  box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.25);
+}
+
+.repository-search::placeholder {
+  color: #8b949e;
+}
+
+.top-repository-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.top-repository-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.top-repository-item:hover .top-repository-name {
+  color: #58a6ff;
+  text-decoration: underline;
+}
+
+.small-avatar,
+.feed-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: #6e7681;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.small-avatar {
+  width: 18px;
+  height: 18px;
+}
+
+.top-repository-name {
+  overflow: hidden;
+  color: #f0f6fc;
+  font-size: 14px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.show-more-button {
+  margin-top: 10px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #8b949e;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.show-more-button:hover {
+  color: #58a6ff;
+}
+
+.recent-activity {
+  margin-top: 30px;
+}
+
+.recent-activity h3 {
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.recent-activity-box {
+  padding: 16px;
+  border: 1px dashed #30363d;
+  border-radius: 6px;
+}
+
+.recent-activity-box p,
+.dashboard-message {
+  margin: 0;
+  color: #8b949e;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Center content */
+
+.dashboard-center {
+  width: 100%;
+  max-width: 900px;
+  padding: 45px 42px;
+  margin: 0 auto;
+}
+
+.dashboard-center > h1 {
+  margin: 0 0 20px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.copilot-card {
+  min-height: 135px;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  background-color: #0d1117;
+  overflow: hidden;
+}
+
+.copilot-card textarea {
+  width: 100%;
+  min-height: 78px;
+  padding: 22px 18px 10px;
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: transparent;
+  color: #f0f6fc;
+  font-size: 16px;
+}
+
+.copilot-card textarea::placeholder {
+  color: #8b949e;
+}
+
+.copilot-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px;
+}
+
+.copilot-options,
+.copilot-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copilot-options button,
+.copilot-actions button,
+.quick-actions button,
+.filter-button,
+.star-button {
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background-color: #161b22;
+  color: #f0f6fc;
+  cursor: pointer;
+}
+
+.copilot-options button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.copilot-options button:hover,
+.quick-actions button:hover,
+.filter-button:hover,
+.star-button:hover {
+  background-color: #21262d;
+  border-color: #8b949e;
+}
+
+.copilot-options .small-square-button {
+  padding: 7px 11px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.copilot-actions {
+  color: #8b949e;
+  font-size: 13px;
+}
+
+.copilot-actions button {
+  padding: 6px 9px;
+  border: none;
+  background: transparent;
+  font-size: 19px;
+}
+
+.quick-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0 28px;
+}
+
+.quick-actions button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 15px;
+  border-radius: 20px;
+  background-color: #010409;
+  font-size: 14px;
+}
+
+.feed-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.feed-heading h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.filter-button {
+  padding: 7px 13px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.feed-card {
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background-color: #0d1117;
+  overflow: hidden;
+}
+
+.feed-card-heading {
+  padding: 13px 17px 5px;
+  color: #8b949e;
+  font-size: 14px;
+}
+
+.feed-card-heading p {
+  margin: 0;
+}
+
+.feed-card-heading button {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #58a6ff;
+  cursor: pointer;
+}
+
+.feed-card-heading button:hover {
+  text-decoration: underline;
+}
+
+.trending-repository {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 17px;
+  border-bottom: 1px solid #30363d;
+}
+
+.trending-repository:last-child {
+  border-bottom: none;
+}
+
+.trending-repository-content {
+  min-width: 0;
+}
+
+.repository-owner {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.feed-avatar {
+  width: 20px;
+  height: 20px;
+}
+
+.repository-owner h3 {
+  margin: 0;
+  color: #f0f6fc;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.repository-owner h3:hover {
+  color: #58a6ff;
+  text-decoration: underline;
+}
+
+.trending-description {
+  margin: 10px 0;
+  color: #f0f6fc;
+  font-size: 14px;
+}
+
+.trending-details,
+.user-repository-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 17px;
+  color: #8b949e;
+  font-size: 12px;
+}
+
+.trending-details span,
+.user-repository-details span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.language-circle {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  background-color: #f1e05a;
+}
+
+.star-button {
+  flex-shrink: 0;
+  display: flex;
+  gap: 8px;
+  padding: 6px 13px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.feed-loading,
+.empty-feed {
+  padding: 30px;
+  color: #8b949e;
+  text-align: center;
+}
+
+/* User repositories */
+
+.your-repositories-section {
+  margin-top: 35px;
+}
+
+.your-repositories-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.your-repositories-heading h3 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.your-repositories-heading button,
+.empty-user-repositories button {
+  padding: 7px 12px;
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: 6px;
+  background-color: #238636;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.your-repositories-heading button:hover,
+.empty-user-repositories button:hover {
+  background-color: #2ea043;
+}
+
+.user-repository-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid #30363d;
+}
+
+.user-repository-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-repository-title h3 {
+  margin: 0;
+  color: #58a6ff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.user-repository-title h3:hover {
+  text-decoration: underline;
+}
+
+.user-repository-title > span {
+  padding: 2px 8px;
+  border: 1px solid #30363d;
+  border-radius: 20px;
+  color: #8b949e;
+  font-size: 11px;
+}
+
+.user-repository-card p {
+  margin: 10px 0;
+  color: #8b949e;
+  font-size: 13px;
+}
+
+.empty-user-repositories {
+  padding: 40px 20px;
+  margin-top: 15px;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Right sidebar */
+
+.dashboard-right {
+  padding: 44px 25px 25px 0;
+}
+
+.changelog-card {
+  padding: 20px 17px;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  background-color: #0d1117;
+}
+
+.changelog-card > h3 {
+  margin: 0 0 16px;
+  font-size: 14px;
+}
+
+.changelog-item {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding-bottom: 17px;
+}
+
+.changelog-item:not(:last-of-type)::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 4px;
+  width: 1px;
+  height: 100%;
+  background-color: #30363d;
+}
+
+.changelog-dot {
+  position: relative;
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  border-radius: 50%;
+  background-color: #484f58;
+}
+
+.changelog-item small {
+  color: #8b949e;
+  font-size: 11px;
+}
+
+.changelog-item p {
+  margin: 5px 0 0;
+  color: #f0f6fc;
+  font-size: 13px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.changelog-item p:hover {
+  color: #58a6ff;
+}
+
+.view-changelog {
+  margin-left: 25px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #8b949e;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.view-changelog:hover {
+  color: #58a6ff;
+}
+
+/* Responsive design */
+
+@media screen and (max-width: 1200px) {
+  .github-dashboard {
+    grid-template-columns: 290px minmax(0, 1fr);
+  }
+
+  .dashboard-right {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .github-dashboard {
+    display: block;
+  }
+
+  .dashboard-left {
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid #30363d;
+  }
+
+  .recent-activity {
+    display: none;
+  }
+
+  .dashboard-center {
+    padding: 30px 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard-left {
+    padding: 20px 16px;
+  }
+
+  .dashboard-center {
+    padding: 25px 15px;
+  }
+
+  .copilot-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .copilot-options {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .quick-actions {
+    justify-content: flex-start;
+  }
+
+  .trending-repository,
+  .user-repository-card {
+    flex-direction: column;
+  }
+
+  .star-button {
+    align-self: flex-start;
+  }
+
+  .your-repositories-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
 }
