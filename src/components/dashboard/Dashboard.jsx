@@ -222,17 +222,17 @@ const Dashboard = () => {
     loadDashboard();
   }, []);
 
-  const searchResults = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
+ const searchResults = useMemo(() => {
+  const query = searchQuery.trim().toLowerCase();
 
-    if (!query) {
-      return repositories;
-    }
+  if (!query) {
+    return [];
+  }
 
-    return repositories.filter((repo) =>
-      repo.name?.toLowerCase().includes(query),
-    );
-  }, [searchQuery, repositories]);
+  return suggestedRepositories.filter((repo) =>
+    repo.name?.toLowerCase().includes(query)
+  );
+}, [searchQuery, suggestedRepositories]);
 
   const trendingRepositories = suggestedRepositories
     .filter(
