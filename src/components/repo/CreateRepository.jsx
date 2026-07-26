@@ -8,13 +8,12 @@
 
 // export default CreateRepository;
 
-
-
-
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CreateRepository.css";
 
 const CreateRepository = () => {
+  const navigate = useNavigate();
   const [repo, setRepo] = useState({
     name: "",
     description: "",
@@ -52,14 +51,14 @@ const CreateRepository = () => {
             visibility: repo.visibility === "public",
             owner: userId,
           }),
-        }
+        },
       );
 
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(
-          data.message || data.error || "Repository creation failed"
+          data.message || data.error || "Repository creation failed",
         );
       }
 
@@ -70,6 +69,7 @@ const CreateRepository = () => {
         description: "",
         visibility: "public",
       });
+      navigate("/dashboard");
     } catch (error) {
       console.error("Repository creation error:", error);
       alert(error.message);
