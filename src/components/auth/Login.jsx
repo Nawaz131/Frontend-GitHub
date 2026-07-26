@@ -19,38 +19,92 @@ const Login = () => {
 
   const { setCurrentUser } = useAuth();
 
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     setLoading(true);
+
+  //     // const res = await axios.post("http://localhost:3002/login", {      // this is for local browser
+  //     //   email,
+  //     //   password,
+  //     // });
+
+  //     const res = await axios.post(                      // THis is for running in deployment broswer
+  //       "https://github-backend-3.onrender.com/login",
+  //       {
+  //         email,
+  //         password,
+  //       },
+  //     );
+
+  //     localStorage.setItem("token", res.data.token);
+  //     localStorage.setItem("userId", res.data.userId);
+
+  //     setCurrentUser(res.data.userId);
+
+  //     window.location.href = "/";
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Login Failed!");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+
+
+
+
+
+
+
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      setLoading(true);
+  try {
+    setLoading(true);
 
-      // const res = await axios.post("http://localhost:3002/login", {      // this is for local browser
-      //   email,
-      //   password,
-      // });
+    const res = await axios.post(
+      "https://github-backend-3.onrender.com/login",
+      {
+        email,
+        password,
+      }
+    );
 
-      const res = await axios.post(                      // THis is for running in deployment broswer
-        "https://github-backend-3.onrender.com/login",
-        {
-          email,
-          password,
-        },
-      );
+    console.log("Login response:", res.data);
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userId", res.data.userId);
+    const userId =
+      res.data.userId ||
+      res.data.user?.id ||
+      res.data.user?._id ||
+      res.data.id ||
+      res.data._id;
 
-      setCurrentUser(res.data.userId);
-
-      window.location.href = "/";
-    } catch (err) {
-      console.error(err);
-      alert("Login Failed!");
-    } finally {
-      setLoading(false);
+    if (!res.data.token || !userId) {
+      console.error("Token or user ID is missing:", res.data);
+      alert("Invalid login response from backend");
+      return;
     }
-  };
+
+    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("userId", userId);
+
+    setCurrentUser(userId);
+
+    window.location.href = "/dashboard";
+  } catch (err) {
+    console.error("Login error:", err.response?.data || err.message);
+    alert(err.response?.data?.message || "Login Failed!");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+
 
   return (
     <div className="login-wrapper">
