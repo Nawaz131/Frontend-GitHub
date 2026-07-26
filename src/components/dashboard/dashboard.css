@@ -25,11 +25,13 @@ button {
 
 .github-dashboard {
   display: grid;
-  grid-template-columns: 360px minmax(500px, 1fr) 320px;
+  grid-template-columns: 320px minmax(0, 1fr) 300px;
   width: 100%;
+  max-width: 100%;
   min-height: calc(100vh - 64px);
   background-color: #010409;
   color: #f0f6fc;
+  overflow-x: hidden;
 }
 
 
@@ -180,12 +182,11 @@ button {
   line-height: 1.5;
 }
 
-/* Center content */
-
 .dashboard-center {
   width: 100%;
+  min-width: 0;
   max-width: 900px;
-  padding: 45px 42px;
+  padding: 45px 30px;
   margin: 0 auto;
 }
 
@@ -517,10 +518,9 @@ button {
   text-align: center;
 }
 
-/* Right sidebar */
-
 .dashboard-right {
-  padding: 44px 25px 25px 0;
+  min-width: 0;
+  padding: 44px 16px 25px 0;
 }
 
 .changelog-card {

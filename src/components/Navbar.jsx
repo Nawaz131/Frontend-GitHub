@@ -62,19 +62,19 @@ const Navbar = () => {
       <div className="navbar-right">
         <div className="search-box">
           <span>
-            <i class="bi bi-search"></i>
+            <i className="bi bi-search"></i>
           </span>
           <input type="text" placeholder="Type / to search" />
         </div>
 
         <Link to="/create">
           <button className="nav-square-btn">
-            <i class="bi bi-plus-square"></i>
+            <i className="bi bi-plus-square"></i>
           </button>
         </Link>
 
         <button className="nav-square-btn">
-          <i class="bi bi-record-circle"></i>
+          <i className="bi bi-record-circle"></i>
         </button>
 
         <button className="nav-square-btn">
@@ -82,16 +82,16 @@ const Navbar = () => {
         </button>
 
         <button className="nav-square-btn">
-          <i class="bi bi-journal-text"></i>
+          <i className="bi bi-journal-text"></i>
         </button>
 
         <button className="nav-square-btn">
-          <i class="bi bi-inbox"></i>
+          <i className="bi bi-inbox"></i>
         </button>
 
         <Link to="/profile">
           <div className="profile-avatar">
-            <i class="bi bi-person-circle"></i>
+            <i className="bi bi-person-circle"></i>
           </div>
         </Link>
       </div>
