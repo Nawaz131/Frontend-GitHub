@@ -1,154 +1,3 @@
-// import React, { useState, useEffect } from "react";
-// import "./dashboard.css";
-// import Navbar from "../Navbar";
-
-// const Dashboard = () => {
-//   const [repositories, setRepositories] = useState([]);
-//   const [searchQuery, setSearchQuery] = useState("");
-//   const [suggestedRepositories, setSuggestedRepositories] = useState([]);
-//   const [searchResults, setSearchResults] = useState([]);
-
-//   useEffect(() => {
-//     const userId = localStorage.getItem("userId");
-
-//     // Data fetching
-//     const fetchRepositories = async () => {
-//       try {
-//         const response = await fetch(
-//           `https://github-backend-3.onrender.com/repo/user/${userId}`   //change url local(localhost:3002) to live server
-//         );
-
-//         if (!response.ok) {
-//           throw new Error("Failed to fetch repositories");
-//         }
-
-//         const data = await response.json();
-
-//         // console.log(data);
-
-//         setRepositories(data.repositories || []);
-//       } catch (err) {
-//         console.log("Error while fetching repositories", err);
-//         setRepositories([]);
-//       }
-//     };
-
-//     // Searching repositories of all data
-//     const fetchSuggestedRepositories = async () => {
-//       try {
-//         const response = await fetch(
-//           `https://github-backend-3.onrender.com/repo/all`              //change url(localhost) local to live server
-//         );
-
-//         if (!response.ok) {
-//           throw new Error("Failed to fetch suggested repositories");
-//         }
-
-//         const data = await response.json();
-
-//         // console.log(data);
-
-//         setSuggestedRepositories(data.repositories || data || []);
-//       } catch (err) {
-//         console.log("Error while fetching repositories", err);
-//         setSuggestedRepositories([]);
-//       }
-//     };
-
-//     if (userId) {
-//       fetchRepositories();
-//     }
-
-//     fetchSuggestedRepositories();
-//   }, []);
-
-//   useEffect(() => {
-//     if (searchQuery === "") {
-//       setSearchResults(repositories);
-//     } else {
-//       const filteredRepo = repositories.filter((repo) =>
-//         repo.name.toLowerCase().includes(searchQuery.toLowerCase())
-//       );
-
-//       setSearchResults(filteredRepo);
-//     }
-//   }, [searchQuery, repositories]);
-
-//   return (
-//     <>
-//       <Navbar />
-
-//       <section id="dashboard">
-//         <aside>
-//           <h3>Suggested Repositories</h3>
-
-//           {suggestedRepositories.map((repo) => {
-//             return (
-//               <div key={repo._id}>
-//                 <h4>{repo.name}</h4>
-//                 <h4>{repo.description}</h4>
-//               </div>
-//             );
-//           })}
-//         </aside>
-
-//         <main>
-//           <h3>Your Repositories</h3>
-
-//           <div id="search">
-//             <input
-//               type="text"
-//               value={searchQuery}
-//               placeholder="Search..."
-//               onChange={(e) => setSearchQuery(e.target.value)}
-//             />
-//           </div>
-
-//           {searchResults.map((repo) => {
-//             return (
-//               <div key={repo._id}>
-//                 <h4>{repo.name}</h4>
-//                 <h4>{repo.description}</h4>
-//               </div>
-//             );
-//           })}
-//         </main>
-
-//         <aside>
-//           <h3>Upcoming Events</h3>
-
-//           <ul>
-//             <li>
-//               <p>Tech Conference - Dec - 12</p>
-//             </li>
-
-//             <li>
-//               <p>Developer Meetup - Dec - 15</p>
-//             </li>
-
-//             <li>
-//               <p>React Summit - Jan - 05</p>
-//             </li>
-//           </ul>
-//         </aside>
-//       </section>
-//     </>
-//   );
-// };
-
-// export default Dashboard;
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
@@ -181,7 +30,6 @@ const Dashboard = () => {
         }
 
         const data = await response.json();
-
 
         setRepositories(Array.isArray(data) ? data : data.repositories || []);
       } catch (error) {
@@ -222,17 +70,17 @@ const Dashboard = () => {
     loadDashboard();
   }, []);
 
- const searchResults = useMemo(() => {
-  const query = searchQuery.trim().toLowerCase();
+  const searchResults = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
 
-  if (!query) {
-    return [];
-  }
+    if (!query) {
+      return [];
+    }
 
-  return suggestedRepositories.filter((repo) =>
-    repo.name?.toLowerCase().includes(query)
-  );
-}, [searchQuery, suggestedRepositories]);
+    return suggestedRepositories.filter((repo) =>
+      repo.name?.toLowerCase().includes(query),
+    );
+  }, [searchQuery, suggestedRepositories]);
 
   const trendingRepositories = suggestedRepositories
     .filter(
@@ -309,8 +157,6 @@ const Dashboard = () => {
           </div>
         </aside>
 
-       
-
         <main className="dashboard-center">
           <h1>Home</h1>
 
@@ -323,7 +169,7 @@ const Dashboard = () => {
             <div className="copilot-footer">
               <div className="copilot-options">
                 <button type="button">
-                   <span>▢</span>
+                  <span>▢</span>
                   Ask
                 </button>
 
@@ -389,14 +235,14 @@ const Dashboard = () => {
             <div className="feed-card-heading">
               <p>
                 <span>⌁</span>
-                Trending repositories·<button type="button">See more</button>
+                My repositories
               </p>
             </div>
 
             {loading ? (
-              <p className="feed-loading">Loading feed...</p>
-            ) : trendingRepositories.length > 0 ? (
-              trendingRepositories.slice(0, 3).map((repo, index) => (
+              <p className="feed-loading">Loading repositories...</p>
+            ) : repositories.length > 0 ? (
+              repositories.map((repo) => (
                 <article className="trending-repository" key={repo._id}>
                   <div className="trending-repository-content">
                     <div className="repository-owner">
@@ -404,14 +250,11 @@ const Dashboard = () => {
                         {repo.name?.charAt(0).toUpperCase() || "R"}
                       </span>
 
-                      <h3>
-                        Developer/{repo.name || `repository-${index + 1}`}
-                      </h3>
+                      <h3>Nawaz Hussain/{repo.name}</h3>
                     </div>
 
                     <p className="trending-description">
-                      {repo.description ||
-                        "A public repository shared by the developer community."}
+                      {repo.description || "No description available"}
                     </p>
 
                     <div className="trending-details">
@@ -420,20 +263,21 @@ const Dashboard = () => {
                         JavaScript
                       </span>
 
-                      <span>☆ {repo.stars || 0}</span>
+                      <span>
+                        {repo.visibility === false ? "Private" : "Public"}
+                      </span>
                     </div>
                   </div>
 
                   <button type="button" className="star-button">
                     ☆ Star
-                    <span>⌄</span>
                   </button>
                 </article>
               ))
             ) : (
               <div className="empty-feed">
-                <h3>No trending repositories available</h3>
-                <p>Public repositories will appear here when available.</p>
+                <h3>No repositories found</h3>
+                <p>Create a repository to see it here.</p>
               </div>
             )}
           </section>
@@ -469,12 +313,9 @@ const Dashboard = () => {
                     </button>
                   </article>
                 ))
-              : !loading   
-                }
+              : !loading}
           </section>
         </main>
-
-
 
         <aside className="dashboard-right">
           <section className="changelog-card">
