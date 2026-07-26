@@ -242,69 +242,34 @@ const Dashboard = () => {
             {loading ? (
               <p className="feed-loading">Loading repositories...</p>
             ) : repositories.length > 0 ? (
-              repositories.map((repo) => (
-                <article className="trending-repository" key={repo._id}>
-                  <div className="trending-repository-content">
-                    <div className="repository-owner">
-                      <span className="feed-avatar">
-                        {repo.name?.charAt(0).toUpperCase() || "R"}
-                      </span>
-
-                      <h3>Nawaz Hussain/{repo.name}</h3>
-                    </div>
-
-                    <p className="trending-description">
-                      {repo.description || "No description available"}
-                    </p>
-
-                    <div className="trending-details">
-                      <span>
-                        <span className="language-circle"></span>
-                        JavaScript
-                      </span>
-
-                      <span>
-                        {repo.visibility === false ? "Private" : "Public"}
-                      </span>
-                    </div>
-                  </div>
-
-                  <button type="button" className="star-button">
-                    ☆ Star
-                  </button>
-                </article>
-              ))
-            ) : (
-              <div className="empty-feed">
-                <h3>No repositories found</h3>
-                <p>Create a repository to see it here.</p>
-              </div>
-            )}
-          </section>
-
-          <section className="your-repositories-section">
-            {repositories.length > 0
-              ? repositories.map((repo) => (
-                  <article className="user-repository-card" key={repo._id}>
-                    <div>
-                      <div className="user-repository-title">
-                        <h3>{repo.name}</h3>
-
-                        <span>
-                          {repo.visibility === false ? "Private" : "Public"}
+              repositories
+                .slice()
+                .reverse()
+                .slice(0, 5)
+                .map((repo) => (
+                  <article className="trending-repository" key={repo._id}>
+                    <div className="trending-repository-content">
+                      <div className="repository-owner">
+                        <span className="feed-avatar">
+                          {repo.name?.charAt(0).toUpperCase() || "R"}
                         </span>
+
+                        <h3>Nawaz Hussain/{repo.name}</h3>
                       </div>
 
-                      <p>{repo.description || "No description available"}</p>
+                      <p className="trending-description">
+                        {repo.description || "No description available"}
+                      </p>
 
-                      <div className="user-repository-details">
+                      <div className="trending-details">
                         <span>
                           <span className="language-circle"></span>
                           JavaScript
                         </span>
 
-                        <span>☆ 0</span>
-                        <span>Updated recently</span>
+                        <span>
+                          {repo.visibility === false ? "Private" : "Public"}
+                        </span>
                       </div>
                     </div>
 
@@ -313,8 +278,15 @@ const Dashboard = () => {
                     </button>
                   </article>
                 ))
-              : !loading}
+            ) : (
+              <div className="empty-feed">
+                <h3>No repositories found</h3>
+                <p>Create a repository to see it here.</p>
+              </div>
+            )}
           </section>
+
+
         </main>
 
         <aside className="dashboard-right">
