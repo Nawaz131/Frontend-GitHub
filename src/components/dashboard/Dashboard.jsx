@@ -439,8 +439,8 @@ const Dashboard = () => {
           </section>
 
           <section className="your-repositories-section">
-            {searchResults.length > 0
-              ? searchResults.map((repo) => (
+            {repositories.length > 0
+              ? repositories.map((repo) => (
                   <article className="user-repository-card" key={repo._id}>
                     <div>
                       <div className="user-repository-title">
