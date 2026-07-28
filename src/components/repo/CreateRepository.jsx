@@ -1,13 +1,3 @@
-// const CreateRepository = () => {
-//   return (
-//     <div>
-//       <h1>Create Repository</h1>
-//     </div>
-//   );
-// };
-
-// export default CreateRepository;
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateRepository.css";
