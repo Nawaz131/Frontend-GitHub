@@ -74,7 +74,7 @@ const Dashboard = () => {
     const query = searchQuery.trim().toLowerCase();
 
     if (!query) {
-      return [];
+      return repositories;
     }
 
     return suggestedRepositories.filter((repo) =>

@@ -11,6 +11,7 @@ const Login = () => {
   useEffect(() => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
+    localStorage.removeItem("userid");
   }, []);
 
   const [email, setEmail] = useState("");
@@ -18,46 +19,6 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const { setCurrentUser } = useAuth();
-
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     setLoading(true);
-
-  //     // const res = await axios.post("http://localhost:3002/login", {      // this is for local browser
-  //     //   email,
-  //     //   password,
-  //     // });
-
-  //     const res = await axios.post(                      // THis is for running in deployment broswer
-  //       "https://github-backend-3.onrender.com/login",
-  //       {
-  //         email,
-  //         password,
-  //       },
-  //     );
-
-  //     localStorage.setItem("token", res.data.token);
-  //     localStorage.setItem("userId", res.data.userId);
-
-  //     setCurrentUser(res.data.userId);
-
-  //     window.location.href = "/";
-  //   } catch (err) {
-  //     console.error(err);
-  //     alert("Login Failed!");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-
-
-
-
-
-
 
   const handleLogin = async (e) => {
   e.preventDefault();
@@ -77,6 +38,7 @@ const Login = () => {
 
     const userId =
       res.data.userId ||
+      res.data.userID ||
       res.data.user?.id ||
       res.data.user?._id ||
       res.data.id ||
