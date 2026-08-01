@@ -9,6 +9,7 @@ import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import CreateRepository from "./components/repo/CreateRepository";
 import AllIssues from "./components/issue/AllIssues";
+import AllPullRequests from "./components/pullRequest/AllPullRequests";
 
 //Issue Pages
 import Issues from "./components/issue/Issues";
@@ -78,6 +79,10 @@ const ProjectRoutes = () => {
     {
       path: "/issues",
       element: <AllIssues />,
+    },
+    {
+      path: "/pull-requests",
+      element: <AllPullRequests />,
     },
   ]);
 

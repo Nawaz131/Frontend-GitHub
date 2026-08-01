@@ -14,7 +14,7 @@ const Navbar = () => {
 
       try {
         const response = await fetch(
-          `https://github-backend-3.onrender.com/repo/user/${userId}`
+          `https://github-backend-3.onrender.com/repo/user/${userId}`,
         );
 
         const data = await response.json();
@@ -64,9 +64,15 @@ const Navbar = () => {
           </button>
         </Link>
 
-        <button className="nav-square-btn">
-          <i className="bi bi-git"></i>
-        </button>
+        <Link to="/pull-requests">
+          <button
+            type="button"
+            className="nav-square-btn"
+            title="All pull requests"
+          >
+            <i className="bi bi-git"></i>
+          </button>
+        </Link>
 
         <div className="navbar-issue-wrapper">
           <button
@@ -81,9 +87,7 @@ const Navbar = () => {
               <h4>Select Repository</h4>
 
               {repositories.length === 0 ? (
-                <p className="navbar-no-repo">
-                  No repositories found
-                </p>
+                <p className="navbar-no-repo">No repositories found</p>
               ) : (
                 repositories.map((repo) => (
                   <button
