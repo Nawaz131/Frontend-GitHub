@@ -1,33 +1,3 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
-// import "./Navbar.css";
-
-// const Navbar = () => {
-//   return (
-//     <nav>
-//       <Link to="/">
-//         <div>
-//           <img
-//             src="https://www.github.com/images/modules/logos_page/GitHub-Mark.png"
-//             alt="GitHub logo"
-//           />
-//           <h3>GitHub</h3>
-//         </div>
-//       </Link>
-//       <div>
-//         <Link to="/create">
-//           <p>Create a Repository</p>
-//         </Link>
-//         <Link to="/profile">
-//           <p>Profile</p>
-//         </Link>
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
@@ -37,13 +7,14 @@ const Navbar = () => {
 
   const [repositories, setRepositories] = useState([]);
   const [showIssueDropdown, setShowIssueDropdown] = useState(false);
+
   useEffect(() => {
     async function fetchRepositories() {
       const userId = localStorage.getItem("userId");
 
       try {
         const response = await fetch(
-          `https://github-backend-3.onrender.com/repo/user/${userId}`,
+          `https://github-backend-3.onrender.com/repo/user/${userId}`
         );
 
         const data = await response.json();
@@ -55,6 +26,7 @@ const Navbar = () => {
 
     fetchRepositories();
   }, []);
+
   return (
     <nav className="github-navbar">
       <div className="navbar-left">
@@ -64,7 +36,7 @@ const Navbar = () => {
           <img
             className="github-logo"
             src="https://www.github.com/images/modules/logos_page/GitHub-Mark.png"
-            alt="GitHub logo"
+            alt="GitHub"
           />
         </Link>
 
@@ -75,12 +47,11 @@ const Navbar = () => {
 
       <div className="navbar-right">
         <div className="search-box">
-          <span>
-            <i className="bi bi-search"></i>
-          </span>
+          <i className="bi bi-search"></i>
           <input type="text" placeholder="Type / to search" />
         </div>
 
+        {/* Create Repository */}
         <Link to="/create">
           <button className="nav-square-btn">
             <i className="bi bi-plus-square"></i>
@@ -88,7 +59,7 @@ const Navbar = () => {
         </Link>
 
         <Link to="/issues">
-          <button type="button" className="nav-square-btn" title="All issues">
+          <button className="nav-square-btn">
             <i className="bi bi-record-circle"></i>
           </button>
         </Link>
@@ -97,7 +68,7 @@ const Navbar = () => {
           <i className="bi bi-git"></i>
         </button>
 
-        <div className="issue-dropdown-container">
+        <div className="navbar-issue-wrapper">
           <button
             className="nav-square-btn"
             onClick={() => setShowIssueDropdown(!showIssueDropdown)}
@@ -106,21 +77,27 @@ const Navbar = () => {
           </button>
 
           {showIssueDropdown && (
-            <div className="issue-dropdown">
+            <div className="navbar-issue-dropdown">
               <h4>Select Repository</h4>
 
-              {repositories.map((repo) => (
-                <div
-                  key={repo._id}
-                  className="issue-item"
-                  onClick={() => {
-                    setShowIssueDropdown(false);
-                    navigate(`/repository/${repo._id}/issues`);
-                  }}
-                >
-                  📁 {repo.name}
-                </div>
-              ))}
+              {repositories.length === 0 ? (
+                <p className="navbar-no-repo">
+                  No repositories found
+                </p>
+              ) : (
+                repositories.map((repo) => (
+                  <button
+                    key={repo._id}
+                    className="navbar-repo-option"
+                    onClick={() => {
+                      setShowIssueDropdown(false);
+                      navigate(`/repository/${repo._id}/issues`);
+                    }}
+                  >
+                    📁 {repo.name}
+                  </button>
+                ))
+              )}
             </div>
           )}
         </div>
