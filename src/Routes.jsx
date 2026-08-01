@@ -8,6 +8,7 @@ import Profile from "./components/user/Profile";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import CreateRepository from "./components/repo/CreateRepository";
+import AllIssues from "./components/issue/AllIssues";
 
 //Issue Pages
 import Issues from "./components/issue/Issues";
@@ -73,6 +74,10 @@ const ProjectRoutes = () => {
     {
       path: "/repository/:repoId/issues/create",
       element: <CreateIssue />,
+    },
+    {
+      path: "/issues",
+      element: <AllIssues />,
     },
   ]);
 

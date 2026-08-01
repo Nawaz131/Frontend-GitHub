@@ -28,14 +28,6 @@
 
 // export default Navbar;
 
-
-
-
-
-
-
-
-
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
@@ -73,9 +65,11 @@ const Navbar = () => {
           </button>
         </Link>
 
-        <button className="nav-square-btn">
-          <i className="bi bi-record-circle"></i>
-        </button>
+        <Link to="/issues">
+          <button type="button" className="nav-square-btn" title="All issues">
+            <i className="bi bi-record-circle"></i>
+          </button>
+        </Link>
 
         <button className="nav-square-btn">
           <i className="bi bi-git"></i>
