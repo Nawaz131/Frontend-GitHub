@@ -236,16 +236,6 @@ const Dashboard = () => {
             </button>
 
             <button type="button">
-              <span>▤</span>
-              Write code
-            </button>
-
-            <button type="button">
-              <span>⑂</span>
-              Git
-            </button>
-
-            <button type="button">
               <span>⑂</span>
               Pull requests
             </button>
