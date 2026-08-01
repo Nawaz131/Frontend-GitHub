@@ -71,7 +71,7 @@ const Navbar = () => {
         <div className="navbar-issue-wrapper">
           <button
             className="nav-square-btn"
-            onClick={() => setShowIssueDropdown(!showIssueDropdown)}
+            onClick={() => setShowIssueDropdown((prev) => !prev)}
           >
             <i className="bi bi-journal-text"></i>
           </button>
