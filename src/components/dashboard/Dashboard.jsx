@@ -8,6 +8,8 @@ const Dashboard = () => {
 
   const [repositories, setRepositories] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [askMode, setAskMode] = useState("Ask");
+  const [showAskMenu, setShowAskMenu] = useState(false);
   const [suggestedRepositories, setSuggestedRepositories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
@@ -170,41 +172,41 @@ const Dashboard = () => {
             <div className="copilot-footer">
               <div className="copilot-options">
                 <div className="ask-menu-wrapper">
-  <button
-    type="button"
-    className="ask-menu-btn"
-    onClick={() => setShowAskMenu((prev) => !prev)}
-  >
-    <span>▢</span>
-    {askMode} ▼
-  </button>
+                  <button
+                    type="button"
+                    className="ask-menu-btn"
+                    onClick={() => setShowAskMenu((prev) => !prev)}
+                  >
+                    <span>▢</span>
+                    {askMode} ▼
+                  </button>
 
-  {showAskMenu && (
-    <div className="ask-popup">
-      <button
-        type="button"
-        className="ask-option"
-        onClick={() => {
-          setAskMode("Ask");
-          setShowAskMenu(false);
-        }}
-      >
-        ✓ Ask
-      </button>
+                  {showAskMenu && (
+                    <div className="ask-popup">
+                      <button
+                        type="button"
+                        className="ask-option"
+                        onClick={() => {
+                          setAskMode("Ask");
+                          setShowAskMenu(false);
+                        }}
+                      >
+                        ✓ Ask
+                      </button>
 
-      <button
-        type="button"
-        className="ask-option"
-        onClick={() => {
-          setAskMode("Agent");
-          setShowAskMenu(false);
-        }}
-      >
-        ☁ Agent
-      </button>
-    </div>
-  )}
-</div>
+                      <button
+                        type="button"
+                        className="ask-option"
+                        onClick={() => {
+                          setAskMode("Agent");
+                          setShowAskMenu(false);
+                        }}
+                      >
+                        ☁ Agent
+                      </button>
+                    </div>
+                  )}
+                </div>
 
                 <div className="repo-dropdown-container">
                   <button
