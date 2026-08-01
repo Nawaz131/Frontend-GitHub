@@ -202,7 +202,16 @@ const Dashboard = () => {
               Agent
             </button>
 
-            <button type="button">
+            <button
+              type="button"
+              onClick={() => {
+                if (repositories.length > 0) {
+                  navigate(`/repository/${repositories[0]._id}/issues/create`);
+                } else {
+                  alert("Please create a repository first");
+                }
+              }}
+            >
               <span>◌</span>
               Create issue
             </button>
@@ -285,8 +294,6 @@ const Dashboard = () => {
               </div>
             )}
           </section>
-
-
         </main>
 
         <aside className="dashboard-right">
