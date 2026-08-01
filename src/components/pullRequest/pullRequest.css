@@ -1,0 +1,39 @@
+.pr-page {
+  width: 80%;
+  margin: 30px auto;
+  color: white;
+}
+
+.pr-page h2 {
+  margin-bottom: 25px;
+}
+
+.pr-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding: 20px;
+  margin-bottom: 15px;
+
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+}
+
+.pr-card h3 {
+  margin: 0 0 10px;
+}
+
+.pr-card p,
+.pr-card small {
+  color: #8b949e;
+}
+
+.pr-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #238636;
+  color: white;
+  text-transform: capitalize;
+}
