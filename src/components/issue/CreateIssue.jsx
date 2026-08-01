@@ -38,26 +38,49 @@ const CreateIssue = () => {
   }
 
   return (
-    <div className="create-issue">
-      <h2>Create New Issue</h2>
+<div className="create-issue-page">
+  <div className="issue-container">
+    <h1>Create new issue</h1>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Issue Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+    <form onSubmit={handleSubmit}>
+      <label>Title</label>
 
-        <textarea
-          placeholder="Issue Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+      <input
+        type="text"
+        placeholder="Issue title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        required
+      />
 
-        <button type="submit">Create Issue</button>
-      </form>
-    </div>
+      <label>Description</label>
+
+      <textarea
+        placeholder="Describe the issue..."
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        rows="8"
+      />
+
+      <div className="buttons">
+        <button
+          type="button"
+          className="cancel-btn"
+          onClick={() => navigate(-1)}
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          className="create-btn"
+        >
+          Create Issue
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
   );
 };
 
