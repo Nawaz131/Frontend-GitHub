@@ -7,6 +7,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const [repositories, setRepositories] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
   const [suggestedRepositories, setSuggestedRepositories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
@@ -173,10 +174,28 @@ const Dashboard = () => {
                   Ask
                 </button>
 
-                <button type="button">
-                  <span>▣</span>
-                  All repositories
-                </button>
+                <div className="repo-dropdown-container">
+                  <button
+                    className="repo-btn"
+                    onClick={() => setShowDropdown(!showDropdown)}
+                  >
+                    All repositories ▼
+                  </button>
+
+                  {showDropdown && (
+                    <div className="repo-dropdown">
+                      {repositories.map((repo) => (
+                        <div
+                          key={repo._id}
+                          className="repo-item"
+                          onClick={() => navigate(`/repository/${repo._id}`)}
+                        >
+                          📁 {repo.name}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
                 <button
                   type="button"

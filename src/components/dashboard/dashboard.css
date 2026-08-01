@@ -664,3 +664,31 @@ button {
     gap: 12px;
   }
 }
+
+
+
+
+.repo-dropdown-container{
+    position:relative;
+}
+
+.repo-dropdown{
+    position:absolute;
+    top:45px;
+    left:0;
+    width:300px;
+    background:#161b22;
+    border:1px solid #30363d;
+    border-radius:8px;
+    z-index:1000;
+}
+
+.repo-item{
+    padding:12px;
+    color:white;
+    cursor:pointer;
+}
+
+.repo-item:hover{
+    background:#21262d;
+}
