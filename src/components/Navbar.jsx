@@ -106,10 +106,6 @@ const Navbar = () => {
           )}
         </div>
 
-        <button className="nav-square-btn">
-          <i className="bi bi-inbox"></i>
-        </button>
-
         <Link to="/profile">
           <div className="profile-avatar">
             <i className="bi bi-person-circle"></i>
