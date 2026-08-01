@@ -28,11 +28,33 @@
 
 // export default Navbar;
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const [repositories, setRepositories] = useState([]);
+  const [showIssueDropdown, setShowIssueDropdown] = useState(false);
+  useEffect(() => {
+    async function fetchRepositories() {
+      const userId = localStorage.getItem("userId");
+
+      try {
+        const response = await fetch(
+          `https://github-backend-3.onrender.com/repo/user/${userId}`,
+        );
+
+        const data = await response.json();
+        setRepositories(data.repositories || []);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    fetchRepositories();
+  }, []);
   return (
     <nav className="github-navbar">
       <div className="navbar-left">
@@ -75,9 +97,33 @@ const Navbar = () => {
           <i className="bi bi-git"></i>
         </button>
 
-        <button className="nav-square-btn">
-          <i className="bi bi-journal-text"></i>
-        </button>
+        <div className="issue-dropdown-container">
+          <button
+            className="nav-square-btn"
+            onClick={() => setShowIssueDropdown(!showIssueDropdown)}
+          >
+            <i className="bi bi-journal-text"></i>
+          </button>
+
+          {showIssueDropdown && (
+            <div className="issue-dropdown">
+              <h4>Select Repository</h4>
+
+              {repositories.map((repo) => (
+                <div
+                  key={repo._id}
+                  className="issue-item"
+                  onClick={() => {
+                    setShowIssueDropdown(false);
+                    navigate(`/repository/${repo._id}/issues`);
+                  }}
+                >
+                  📁 {repo.name}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
         <button className="nav-square-btn">
           <i className="bi bi-inbox"></i>
