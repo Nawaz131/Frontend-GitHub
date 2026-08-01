@@ -201,7 +201,6 @@ button {
   border: 1px solid #30363d;
   border-radius: 12px;
   background-color: #0d1117;
-  overflow: hidden;
 }
 
 .copilot-card textarea {
