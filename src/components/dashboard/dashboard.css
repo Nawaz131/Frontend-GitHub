@@ -753,3 +753,56 @@ button {
     color:#58a6ff;
 }
 
+/* Ask Popup */
+
+.ask-menu-wrapper {
+  position: relative;
+}
+
+.ask-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #161b22;
+  color: #f0f6fc;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.ask-menu-btn:hover {
+  background: #21262d;
+}
+
+.ask-popup {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 190px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.ask-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  color: #f0f6fc;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ask-option:hover {
+  background: #21262d;
+}
+
+.ask-option:first-child {
+  border-bottom: 1px solid #30363d;
+}

@@ -169,10 +169,42 @@ const Dashboard = () => {
 
             <div className="copilot-footer">
               <div className="copilot-options">
-                <button type="button">
-                  <span>▢</span>
-                  Ask
-                </button>
+                <div className="ask-menu-wrapper">
+  <button
+    type="button"
+    className="ask-menu-btn"
+    onClick={() => setShowAskMenu((prev) => !prev)}
+  >
+    <span>▢</span>
+    {askMode} ▼
+  </button>
+
+  {showAskMenu && (
+    <div className="ask-popup">
+      <button
+        type="button"
+        className="ask-option"
+        onClick={() => {
+          setAskMode("Ask");
+          setShowAskMenu(false);
+        }}
+      >
+        ✓ Ask
+      </button>
+
+      <button
+        type="button"
+        className="ask-option"
+        onClick={() => {
+          setAskMode("Agent");
+          setShowAskMenu(false);
+        }}
+      >
+        ☁ Agent
+      </button>
+    </div>
+  )}
+</div>
 
                 <div className="repo-dropdown-container">
                   <button
